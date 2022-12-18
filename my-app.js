@@ -13,6 +13,8 @@ import { router } from 'lit-element-router';
 import './app-link';
 import './app-main';
 import './pages/about-page';
+import './pages/contact-page';
+import './pages/kittens/index';
 
 @router
 class App extends LitElement {
@@ -37,8 +39,12 @@ class App extends LitElement {
         pattern: 'about',
       },
       {
-        name: 'user',
-        pattern: 'user/:id',
+        name: 'kittens',
+        pattern: 'kittens',
+      },
+      {
+        name: 'contact',
+        pattern: 'contact',
       },
       {
         name: 'not-found',
@@ -67,15 +73,17 @@ class App extends LitElement {
     return html`
       <app-link href="/">Home</app-link>
       <app-link href="/about">About</app-link>
-      <app-link href="/info?data=12345">Info?data=12345</app-link>
+      <app-link href="/about">Contact</app-link>
       <app-link href="/user/14">user/14</app-link>
 
       <app-main active-route=${this.route}>
+      <main class='grid grid-cols-1 place-items-center h-screen'>
         <h1 route="home">Home</h1>
       
        <about-page route="about"></about-page>
-        <h1 route="not-found">Not Found</h1>
-      
+       <contact-page route='contact'></contact-page> 
+       <h1 route="not-found">Not Found</h1>
+      </main>
       </app-main>
     `;
   }
